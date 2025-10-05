@@ -1,0 +1,505 @@
+.nasa-data-page {
+  min-height: 100vh;
+  background: #0a0e27;
+  color: white;
+}
+
+/* Header Section */
+.nasa-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+  padding: 5rem 2rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.nasa-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+  opacity: 0.3;
+}
+
+.nasa-header-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.nasa-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #fff, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nasa-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+/* Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Dataset Section */
+.dataset-section {
+  padding: 4rem 0;
+  background: #0f172a;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(to right, #a78bfa, #4ade80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dataset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.dataset-card {
+  background: #1e293b;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 3px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.dataset-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(167, 139, 250, 0.3);
+}
+
+.dataset-card.active {
+  border-width: 3px;
+  box-shadow: 0 10px 30px rgba(167, 139, 250, 0.5);
+  background: #2d3748;
+}
+
+.dataset-icon {
+  margin-bottom: 1rem;
+}
+
+.dataset-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.dataset-description {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.dataset-meta {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dataset-source,
+.dataset-resolution {
+  font-size: 0.85rem;
+  color: #a78bfa;
+  background: rgba(167, 139, 250, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Data Viewer Section */
+.data-viewer-section {
+  padding: 4rem 0;
+  background: #0a0e27;
+}
+
+.viewer-controls {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.control-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.control-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #a78bfa;
+}
+
+.control-select,
+.control-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: #1e293b;
+  border: 2px solid #475569;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.control-select:focus,
+.control-input:focus {
+  outline: none;
+  border-color: #a78bfa;
+}
+
+.load-data-btn {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.load-data-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(167, 139, 250, 0.4);
+}
+
+.load-data-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Current Dataset Info */
+.current-dataset-info {
+  background: #1e293b;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  border-left: 4px solid #a78bfa;
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.info-icon {
+  font-size: 2rem;
+}
+
+.info-header h3 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.info-badges {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: rgba(167, 139, 250, 0.2);
+  color: #a78bfa;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Satellite Viewer */
+.satellite-viewer {
+  background: #1e293b;
+  border-radius: 1rem;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  border: 2px dashed #475569;
+}
+
+.viewer-loading,
+.viewer-empty,
+.viewer-content {
+  text-align: center;
+  padding: 3rem;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid #475569;
+  border-top: 5px solid #a78bfa;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1.5rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.placeholder-icon,
+.empty-icon {
+  font-size: 5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.viewer-placeholder h3,
+.viewer-empty h3 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.placeholder-date {
+  color: #4ade80;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.placeholder-note {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(167, 139, 250, 0.1);
+  border-radius: 0.5rem;
+}
+
+.api-info {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Data Metrics Grid */
+.data-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.metric-card {
+  background: #1e293b;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  border: 1px solid #475569;
+}
+
+.metric-card h4 {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #a78bfa;
+  margin: 0;
+}
+
+.metric-unit {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+.metric-status {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f59e0b;
+  margin: 0;
+}
+
+.metric-indicator {
+  font-size: 2rem;
+}
+
+.trend-neutral {
+  color: #94a3b8;
+}
+
+/* Data Sources Section */
+.data-sources-section {
+  padding: 4rem 0;
+  background: #0f172a;
+}
+
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.source-card {
+  background: #1e293b;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  transition: transform 0.3s;
+  border: 2px solid #475569;
+}
+
+.source-card:hover {
+  transform: translateY(-5px);
+  border-color: #a78bfa;
+}
+
+.source-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.source-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: #a78bfa;
+}
+
+.source-card p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.source-link {
+  color: #4ade80;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.source-link:hover {
+  color: #22c55e;
+}
+
+/* AI Recommendations */
+.ai-recommendations {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  border: 2px solid #4ade80;
+}
+
+.ai-recommendations h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #4ade80;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recommendations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recommendation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(74, 222, 128, 0.1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid #4ade80;
+}
+
+.rec-number {
+  background: #4ade80;
+  color: #0f172a;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.recommendation-item p {
+  margin: 0;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nasa-title {
+    font-size: 2rem;
+  }
+
+  .viewer-controls {
+    flex-direction: column;
+  }
+
+  .control-group {
+    width: 100%;
+  }
+
+  .load-data-btn {
+    width: 100%;
+  }
+
+  .dataset-grid,
+  .sources-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .data-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ai-recommendations {
+    padding: 1.5rem;
+  }
+
+  .recommendation-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .rec-number {
+    margin: 0 auto;
+  }
+}

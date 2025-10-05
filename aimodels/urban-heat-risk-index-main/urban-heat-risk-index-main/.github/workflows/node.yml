@@ -1,0 +1,27 @@
+name: Node
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web-apps/urban-sun-safe
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Audit Dependencies
+      working-directory: ./web-apps/urban-sun-safe
+      run: npm audit
+    - name: Install Dependencies
+      working-directory: ./web-apps/urban-sun-safe
+      run: npm install
+    - name: Build
+      working-directory: ./web-apps/urban-sun-safe
+      run: npm run build
