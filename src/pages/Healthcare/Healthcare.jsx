@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SatelliteMap from '../../components/SatelliteMap/SatelliteMap';
+import GoogleMaps3D from '../../components/GoogleMaps3D/GoogleMaps3D';
 import CitySearch from '../../components/CitySearch/CitySearch';
 import { analyzeHealthcare } from '../../utils/aiModels';
 import './Healthcare.css';
@@ -139,6 +140,18 @@ function Healthcare() {
                   <div className="healthcare-value">{healthcareResults.qualityScore}/100</div>
                   <p className="healthcare-label">Overall Quality</p>
                 </div>
+              </div>
+
+              {/* 3D Aerial View */}
+              <div className="visualization-section">
+                <h3>3D Aerial View</h3>
+                <GoogleMaps3D 
+                  coordinates={selectedCity.coordinates}
+                  city={selectedCity.name}
+                />
+                <p className="viz-description">
+                  Google Maps 3D aerial view showing healthcare facilities and urban infrastructure.
+                </p>
               </div>
 
               {/* Satellite Map */}

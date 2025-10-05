@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SatelliteMap from '../../components/SatelliteMap/SatelliteMap';
-import UrbanCity3D from '../../components/3D_Models/UrbanCity3D';
+import GoogleMaps3D from '../../components/GoogleMaps3D/GoogleMaps3D';
 import CitySearch from '../../components/CitySearch/CitySearch';
 import { analyzeGreenSpace } from '../../utils/aiModels';
 import './GreenSpace.css';
@@ -128,16 +128,15 @@ function GreenSpace() {
                 </div>
               </div>
 
-              {/* 3D Visualization */}
+              {/* 3D Aerial View */}
               <div className="visualization-section">
-                <h3>3D Urban Green Space Visualization</h3>
-                <UrbanCity3D 
-                  heatLevel="moderate"
-                  greenCoverage={greenResults.greenspaceCoverage || 20}
-                  autoRotate={true}
+                <h3>3D Aerial View</h3>
+                <GoogleMaps3D 
+                  coordinates={selectedCity.coordinates}
+                  city={selectedCity.name}
                 />
                 <p className="viz-description">
-                  Interactive 3D model showing green space distribution. Green areas represent parks and vegetation.
+                  Google Maps 3D aerial view showing real terrain, buildings, and green spaces.
                 </p>
               </div>
 
