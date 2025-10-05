@@ -5,6 +5,12 @@ Based on: https://github.com/EsriDE/urban-heat-risk-index
 """
 import numpy as np
 from datetime import datetime
+import sys
+import os
+
+# Add parent directory to path for imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from utils.nasa_data_fetcher import fetch_comprehensive_data
 
 def calculate_heat_risk_score(temperature, population_density, tree_coverage):
     """
@@ -39,9 +45,9 @@ def calculate_heat_risk(city, coordinates, date):
     Calculate comprehensive heat risk analysis for a city
     
     This function integrates:
-    1. Land Surface Temperature (LST) from satellite data
+    1. Land Surface Temperature (LST) from NASA POWER API
     2. Population density analysis
-    3. Tree canopy coverage assessment
+    3. Tree canopy coverage assessment (NDVI-based)
     4. Urban Heat Island effect calculation
     
     Args:
@@ -53,60 +59,24 @@ def calculate_heat_risk(city, coordinates, date):
         dict: Comprehensive heat risk analysis
     """
     
-    # Enhanced city database with realistic urban metrics
-    city_database = {
-        'Delhi': {
-            'temp': 42, 
-            'population': 1500000, 
-            'pop_density': 11320,  # per km²
-            'treeCover': 18,
-            'area_km2': 132.5,
-            'uhi_effect': 5.2  # Urban Heat Island effect in °C
-        },
-        'New York': {
-            'temp': 35, 
-            'population': 1200000, 
-            'pop_density': 10194,
-            'treeCover': 27,
-            'area_km2': 117.7,
-            'uhi_effect': 3.8
-        },
-        'London': {
-            'temp': 28, 
-            'population': 900000, 
-            'pop_density': 5666,
-            'treeCover': 33,
-            'area_km2': 158.8,
-            'uhi_effect': 2.5
-        },
-        'Tokyo': {
-            'temp': 32, 
-            'population': 2000000, 
-            'pop_density': 15275,
-            'treeCover': 24,
-            'area_km2': 130.9,
-            'uhi_effect': 4.1
-        },
-        'São Paulo': {
-            'temp': 30, 
-            'population': 1300000, 
-            'pop_density': 7398,
-            'treeCover': 31,
-            'area_km2': 175.7,
-            'uhi_effect': 3.2
-        },
-        'Mumbai': {
-            'temp': 38, 
-            'population': 1800000, 
-            'pop_density': 20694,
-            'treeCover': 15,
-            'area_km2': 87.0,
-            'uhi_effect': 4.8
-        }
-    }
+    lat, lon = coordinates
     
-    # Get city data or use default
-    city_data = city_database.get(city, city_database['Delhi'])
+    print(f"Analyzing heat risk for {city} at coordinates: {lat}, {lon}")
+    
+    # Fetch real NASA data for this location
+    nasa_data = fetch_comprehensive_data(lat, lon, date)
+    
+    print(f"NASA Data fetched: Temp={nasa_data['temperature']}°C, Tree Coverage={nasa_data['tree_coverage']}%, Pop Density={nasa_data['population_density']}")
+    
+    # Use real NASA data
+    city_data = {
+        'temp': nasa_data['temperature'],
+        'population': nasa_data['estimated_population'],
+        'pop_density': nasa_data['population_density'],
+        'treeCover': nasa_data['tree_coverage'],
+        'area_km2': 100,  # Estimated urban area
+        'uhi_effect': nasa_data['uhi_effect']
+    }
     
     # Calculate heat risk index using enhanced algorithm
     risk_index = calculate_heat_risk_score(
@@ -180,7 +150,7 @@ def calculate_heat_risk(city, coordinates, date):
             'urbanHeatIsland': city_data['uhi_effect'],
             'areaKm2': city_data['area_km2']
         },
-        'dataSource': 'Landsat 8/9 LST, GHS-POP, ESA WorldCover'
+        'dataSource': f"NASA POWER ({nasa_data['data_sources']['temperature']}), NDVI ({nasa_data['data_sources']['vegetation']}), Population ({nasa_data['data_sources']['population']})"
     }
 
 def generate_heat_recommendations(risk_index, tree_cover, uhi_effect, heat_index):
