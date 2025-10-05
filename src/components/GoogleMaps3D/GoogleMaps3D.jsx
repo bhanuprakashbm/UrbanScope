@@ -19,7 +19,7 @@ function GoogleMaps3D({ coordinates, city }) {
         tilt: 45,
         heading: 0,
         mapTypeControl: true,
-        streetViewControl: false,
+        streetViewControl: true,
         fullscreenControl: true,
         zoomControl: true,
       });

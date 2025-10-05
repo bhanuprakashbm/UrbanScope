@@ -110,6 +110,9 @@ function Navbar() {
           <li className="navbar-list-item" onClick={()=>toggleMenu()}>
             <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/urban-vr">Urban VR</NavLink>
           </li>
+          <li className="navbar-list-item" onClick={()=>toggleMenu()}>
+            <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/maps-3d">3D Maps</NavLink>
+          </li>
           <li className="navbar-list-item" onClick={toggleMenu}>
             <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/about">About</NavLink>
           </li>

@@ -250,9 +250,9 @@ def generate_summary(city, years, heat_impact, green_impact, healthcare_impact):
     return f"""
     In {years} years, {city} is projected to face:
     
-    🌡️ Heat Risk: {heat_impact['severity']} ({heat_impact['percentChange']:+.1f}% change)
-    🌳 Green Space: {green_impact['severity']} ({green_impact['percentChange']:+.1f}% change)
-    🏥 Healthcare Access: {healthcare_impact['severity']} ({healthcare_impact['percentChange']:+.1f}% change)
+    Heat Risk: {heat_impact['severity']} ({heat_impact['percentChange']:+.1f}% change)
+    Green Space: {green_impact['severity']} ({green_impact['percentChange']:+.1f}% change)
+    Healthcare Access: {healthcare_impact['severity']} ({healthcare_impact['percentChange']:+.1f}% change)
     
     Without intervention, urban health conditions will deteriorate significantly.
     Recommended investment: $150-250M over 5 years for integrated solutions.

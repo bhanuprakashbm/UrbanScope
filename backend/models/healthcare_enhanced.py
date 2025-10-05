@@ -353,36 +353,36 @@ def generate_healthcare_recommendations(access_pct, facilities_gap, beds_gap, do
     # Access-based recommendations
     if access_pct < 60:
         recommendations.extend([
-            f'🚨 Critical: Only {access_pct}% have 15-min access',
-            f'🏥 Build {facilities_gap} new facilities urgently',
-            f'🚑 Add {len(underserved_areas)} mobile health units for underserved areas',
-            '🚌 Improve public transportation to existing facilities'
+            f'Critical: Only {access_pct}% have 15-min access',
+            f'Build {facilities_gap} new facilities urgently',
+            f'Add {len(underserved_areas)} mobile health units for underserved areas',
+            'Improve public transportation to existing facilities'
         ])
     elif access_pct < 75:
         recommendations.extend([
-            f'⚠️ Build {facilities_gap} new healthcare centers',
-            '🏥 Focus on underserved neighborhoods',
-            '🚐 Implement telemedicine services'
+            f'Build {facilities_gap} new healthcare centers',
+            'Focus on underserved neighborhoods',
+            'Implement telemedicine services'
         ])
     else:
         recommendations.extend([
-            '✅ Good access coverage',
-            '🔧 Focus on quality improvements'
+            'Good access coverage',
+            'Focus on quality improvements'
         ])
     
     # Resource gaps
     if beds_gap > 0:
-        recommendations.append(f'🛏️ Add {beds_gap} hospital beds to meet WHO standards')
+        recommendations.append(f'Add {beds_gap} hospital beds to meet WHO standards')
     
     if doctors_gap > 0:
-        recommendations.append(f'👨‍⚕️ Recruit {doctors_gap} additional doctors')
+        recommendations.append(f'Recruit {doctors_gap} additional doctors')
     
     # Wait time
     if wait_time > 30:
-        recommendations.append(f'⏱️ Reduce wait times from {wait_time} to <30 minutes')
+        recommendations.append(f'Reduce wait times from {wait_time} to <30 minutes')
     
     # Geographic recommendations
     if underserved_areas:
-        recommendations.append(f'📍 Priority zones: {", ".join(underserved_areas[:3])}')
+        recommendations.append(f'Priority zones: {", ".join(underserved_areas[:3])}')
     
     return recommendations

@@ -65,6 +65,22 @@ function UrbanVR() {
       thumbnail: '/3dvideos/video7.mp4',
       src: '/3dvideos/video7.mp4',
       category: 'Health Metrics'
+    },
+    {
+      id: 8,
+      title: 'Smart City Infrastructure',
+      description: 'Immersive view of smart city technologies and urban health monitoring systems',
+      thumbnail: '/3dvideos/video8.mp4',
+      src: '/3dvideos/video8.mp4',
+      category: 'Smart Cities'
+    },
+    {
+      id: 9,
+      title: 'Climate Resilience Planning',
+      description: '360° visualization of climate adaptation strategies and urban resilience measures',
+      thumbnail: '/3dvideos/video9.mp4',
+      src: '/3dvideos/video9.mp4',
+      category: 'Climate Action'
     }
   ];
 
@@ -205,62 +221,7 @@ function UrbanVR() {
         </div>
       </section>
 
-      {/* Info Section */}
-      <section className="vr-info-section">
-        <div className="container">
-          <div className="vr-info-grid">
-            <div className="vr-info-card">
-              <div className="vr-info-icon">🥽</div>
-              <h3>VR Compatible</h3>
-              <p>Experience these videos with VR headsets for full immersion</p>
-            </div>
-            <div className="vr-info-card">
-              <div className="vr-info-icon">📱</div>
-              <h3>Mobile Friendly</h3>
-              <p>View on mobile devices with gyroscope support for 360° viewing</p>
-            </div>
-            <div className="vr-info-card">
-              <div className="vr-info-icon">🌐</div>
-              <h3>Interactive</h3>
-              <p>Drag to look around and explore urban health data in 360°</p>
-            </div>
-            <div className="vr-info-card">
-              <div className="vr-info-icon">🎯</div>
-              <h3>Data-Driven</h3>
-              <p>Based on real NASA Earth observation data and urban health metrics</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Usage Instructions */}
-      <section className="vr-instructions-section">
-        <div className="container">
-          <h2 className="section-title">How to Use</h2>
-          <div className="instructions-grid">
-            <div className="instruction-item">
-              <span className="instruction-number">1</span>
-              <h4>Select a Video</h4>
-              <p>Choose from the gallery below to start your VR experience</p>
-            </div>
-            <div className="instruction-item">
-              <span className="instruction-number">2</span>
-              <h4>Control Playback</h4>
-              <p>Use play/pause and fullscreen controls for optimal viewing</p>
-            </div>
-            <div className="instruction-item">
-              <span className="instruction-number">3</span>
-              <h4>Explore in 360°</h4>
-              <p>Drag or move your device to look around the virtual environment</p>
-            </div>
-            <div className="instruction-item">
-              <span className="instruction-number">4</span>
-              <h4>VR Headset (Optional)</h4>
-              <p>Connect a VR headset for the most immersive experience</p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

@@ -277,33 +277,33 @@ def generate_green_recommendations(coverage, gap, distance, accessibility_level,
     # Coverage-based recommendations
     if coverage < 15:
         recommendations.extend([
-            f'🚨 Critical: Add {gap:.1f}% green space urgently',
-            f'🏞️ Create 10-15 new parks (currently {parks_count})',
-            '🏢 Implement mandatory rooftop gardens for new buildings',
-            '🌳 Plant 50,000 trees over next 3 years',
-            '🏗️ Convert vacant lots into pocket parks'
+            f'Critical: Add {gap:.1f}% green space urgently',
+            f'Create 10-15 new parks (currently {parks_count})',
+            'Implement mandatory rooftop gardens for new buildings',
+            'Plant 50,000 trees over next 3 years',
+            'Convert vacant lots into pocket parks'
         ])
     elif coverage < 25:
         recommendations.extend([
-            f'⚠️ Increase green space by {gap:.1f}%',
-            f'🌳 Add 5-8 new parks (currently {parks_count})',
-            '🌲 Street tree planting program: 10,000 trees',
-            '🏞️ Develop linear parks along waterways'
+            f'Increase green space by {gap:.1f}%',
+            f'Add 5-8 new parks (currently {parks_count})',
+            'Street tree planting program: 10,000 trees',
+            'Develop linear parks along waterways'
         ])
     else:
         recommendations.extend([
-            '✅ Maintain current green infrastructure',
-            '🔧 Focus on quality and accessibility improvements',
-            '🌱 Continue gradual expansion program'
+            'Maintain current green infrastructure',
+            'Focus on quality and accessibility improvements',
+            'Continue gradual expansion program'
         ])
     
     # Accessibility-based recommendations
     if distance > 500:
-        recommendations.append(f'🚶 Poor accessibility: Nearest park {distance}m away (target: <300m)')
-        recommendations.append('📍 Create neighborhood parks within 5-min walking distance')
+        recommendations.append(f'Poor accessibility: Nearest park {distance}m away (target: <300m)')
+        recommendations.append('Create neighborhood parks within 5-min walking distance')
     
     # Per capita recommendations
     if per_capita < 9:
-        recommendations.append(f'👥 Insufficient green space per capita: {per_capita:.1f}m² (WHO target: 9m²)')
+        recommendations.append(f'Insufficient green space per capita: {per_capita:.1f}m² (WHO target: 9m²)')
     
     return recommendations

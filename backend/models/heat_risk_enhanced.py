@@ -159,33 +159,33 @@ def generate_heat_recommendations(risk_index, tree_cover, uhi_effect, heat_index
     
     if risk_index >= 7:
         recommendations.extend([
-            '🚨 Establish emergency cooling centers in public buildings',
-            '🌡️ Issue heat health warnings to vulnerable populations',
-            '🌳 Urgent: Increase tree canopy by 15-20% in next 2 years',
-            '🏗️ Install cool/reflective roofing on 30% of buildings',
-            '💧 Create water misting stations in high-traffic areas'
+            'Establish emergency cooling centers in public buildings',
+            'Issue heat health warnings to vulnerable populations',
+            'Urgent: Increase tree canopy by 15-20% in next 2 years',
+            'Install cool/reflective roofing on 30% of buildings',
+            'Create water misting stations in high-traffic areas'
         ])
     elif risk_index >= 5:
         recommendations.extend([
-            '🌳 Add green infrastructure: 5,000 new trees annually',
-            '🏞️ Create urban parks and green corridors',
-            '🏗️ Implement cool pavement technology on major roads',
-            '💨 Improve ventilation corridors through urban planning'
+            'Add green infrastructure: 5,000 new trees annually',
+            'Create urban parks and green corridors',
+            'Implement cool pavement technology on major roads',
+            'Improve ventilation corridors through urban planning'
         ])
     else:
         recommendations.extend([
-            '✅ Maintain current green space levels',
-            '📊 Continue monitoring heat patterns',
-            '🌱 Gradual tree planting program (1,000 trees/year)'
+            'Maintain current green space levels',
+            'Continue monitoring heat patterns',
+            'Gradual tree planting program (1,000 trees/year)'
         ])
     
     # Additional recommendations based on tree coverage
     if tree_cover < 20:
-        recommendations.append(f'🌲 Critical: Tree coverage at {tree_cover}% (target: 30%)')
+        recommendations.append(f'Critical: Tree coverage at {tree_cover}% (target: 30%)')
     
     # UHI-specific recommendations
     if uhi_effect > 4:
-        recommendations.append(f'🏙️ High UHI effect ({uhi_effect}°C): Focus on urban design changes')
+        recommendations.append(f'High UHI effect ({uhi_effect}°C): Focus on urban design changes')
     
     return recommendations
 
