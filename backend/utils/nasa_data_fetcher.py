@@ -54,12 +54,18 @@ def fetch_temperature_data(lat, lon, date):
                 t2m_max_data = params_data.get('T2M_MAX', {})
                 
                 # Calculate average from last 7 days
-                temps = [v for v in t2m_data.values() if isinstance(v, (int, float))]
-                max_temps = [v for v in t2m_max_data.values() if isinstance(v, (int, float))]
+                temps = [v for v in t2m_data.values() if isinstance(v, (int, float)) and v != -999]
+                max_temps = [v for v in t2m_max_data.values() if isinstance(v, (int, float)) and v != -999]
                 
                 if temps and max_temps:
                     avg_temp = np.mean(temps)
                     max_temp = np.mean(max_temps)
+                    
+                    # NASA POWER T2M is in Celsius, but check for unrealistic values
+                    # If temperature is below -100°C or above 60°C, use fallback
+                    if avg_temp < -100 or avg_temp > 60:
+                        print(f"Warning: Unrealistic temperature {avg_temp}°C from NASA API, using fallback")
+                        return get_estimated_temperature(lat, lon)
                     
                     return {
                         'temperature': round(avg_temp, 1),
