@@ -60,27 +60,28 @@ function HeatRisk() {
           <h2 className="section-title">Analysis Dashboard</h2>
           
           <div className="analysis-controls">
-            <div className="control-group">
-              <label>City Selection</label>
-              <CitySearch onCitySelect={handleCitySelect} />
-              {selectedCity && (
-                <div className="selected-city-info">
-                  <span className="info-icon">✅</span>
-                  <span>{selectedCity.name}, {selectedCity.country}</span>
-                  <span className="coords">({selectedCity.lat.toFixed(4)}, {selectedCity.lon.toFixed(4)})</span>
-                </div>
-              )}
-            </div>
+            <div className="controls-grid">
+              <div className="control-group">
+                <label>City Selection</label>
+                <CitySearch onCitySelect={handleCitySelect} />
+                {selectedCity && (
+                  <div className="selected-city-info">
+                    <span>{selectedCity.name}, {selectedCity.country}</span>
+                    <span className="coords">({selectedCity.lat.toFixed(4)}, {selectedCity.lon.toFixed(4)})</span>
+                  </div>
+                )}
+              </div>
 
-            <div className="control-group">
-              <label>Date</label>
-              <input
-                type="date"
-                value={currentDate}
-                onChange={(e) => setCurrentDate(e.target.value)}
-                max={new Date().toISOString().slice(0, 10)}
-                className="control-input"
-              />
+              <div className="control-group">
+                <label>Analysis Date</label>
+                <input
+                  type="date"
+                  value={currentDate}
+                  onChange={(e) => setCurrentDate(e.target.value)}
+                  max={new Date().toISOString().slice(0, 10)}
+                  className="control-input"
+                />
+              </div>
             </div>
 
             <button 
@@ -88,7 +89,7 @@ function HeatRisk() {
               onClick={handleAnalyze}
               disabled={loading || !selectedCity}
             >
-              {loading ? '🔄 Analyzing...' : '🔍 Analyze Heat Risk'}
+              {loading ? 'Analyzing...' : 'Analyze Heat Risk'}
             </button>
           </div>
 

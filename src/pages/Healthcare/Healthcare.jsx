@@ -68,7 +68,6 @@ function Healthcare() {
               <CitySearch onCitySelect={handleCitySelect} />
               {selectedCity && (
                 <div className="selected-city-info">
-                  <span className="info-icon">✅</span>
                   <span>{selectedCity.name}, {selectedCity.country}</span>
                   <span className="coords">({selectedCity.lat.toFixed(4)}, {selectedCity.lon.toFixed(4)})</span>
                 </div>
@@ -122,7 +121,6 @@ function Healthcare() {
                 </div>
 
                 <div className="healthcare-card" style={{ borderColor: healthcareResults.statusColor }}>
-                  <div className="healthcare-icon">✅</div>
                   <h3>Access Rate</h3>
                   <div className="healthcare-value">{healthcareResults.accessPercentage15min}%</div>
                   <p className="healthcare-label" style={{ color: healthcareResults.statusColor }}>
@@ -193,17 +191,14 @@ function Healthcare() {
                     <p className="facility-count">{healthcareResults.hospitals}</p>
                   </div>
                   <div className="facility-card">
-                    <div className="facility-icon">🏢</div>
                     <h4>Primary Care</h4>
                     <p className="facility-count">{healthcareResults.primaryCareCenters}</p>
                   </div>
                   <div className="facility-card">
-                    <div className="facility-icon">🚑</div>
                     <h4>Emergency Centers</h4>
                     <p className="facility-count">{healthcareResults.emergencyCenters}</p>
                   </div>
                   <div className="facility-card">
-                    <div className="facility-icon">👨‍⚕️</div>
                     <h4>Specialists</h4>
                     <p className="facility-count">{healthcareResults.specialistsCount}</p>
                   </div>
@@ -235,7 +230,7 @@ function Healthcare() {
                   </div>
 
                   <div className="resource-card">
-                    <h4>👨‍⚕️ Doctors</h4>
+                    <h4>Doctors</h4>
                     <div className="resource-comparison">
                       <div className="current-value">
                         <span className="value-label">Current</span>
@@ -279,11 +274,10 @@ function Healthcare() {
               {/* Underserved Areas */}
               {healthcareResults.underservedAreas && healthcareResults.underservedAreas.length > 0 && (
                 <div className="underserved-section">
-                  <h3>⚠️ Underserved Areas</h3>
+                  <h3>Underserved Areas</h3>
                   <div className="underserved-list">
                     {healthcareResults.underservedAreas.map((area, index) => (
                       <div key={index} className="underserved-item">
-                        <span className="area-icon">📍</span>
                         <span className="area-name">{area}</span>
                         <span className="priority-badge">High Priority</span>
                       </div>

@@ -65,7 +65,6 @@ function GreenSpace() {
               <CitySearch onCitySelect={handleCitySelect} />
               {selectedCity && (
                 <div className="selected-city-info">
-                  <span className="info-icon">✅</span>
                   <span>{selectedCity.name}, {selectedCity.country}</span>
                   <span className="coords">({selectedCity.lat.toFixed(4)}, {selectedCity.lon.toFixed(4)})</span>
                 </div>
@@ -239,16 +238,14 @@ function GreenSpace() {
 
               {/* Population Impact */}
               <div className="population-impact-section">
-                <h3>👨‍👩‍👧‍👦 Population Impact</h3>
+                <h3>Population Impact</h3>
                 <div className="impact-grid">
                   <div className="impact-card">
-                    <div className="impact-icon">✅</div>
                     <h4>With Access</h4>
                     <p className="impact-count">{(greenResults.populationWithAccess / 1000).toFixed(0)}K</p>
                     <p className="impact-desc">Within {bufferDistance}m of green space</p>
                   </div>
                   <div className="impact-card">
-                    <div className="impact-icon">⚠️</div>
                     <h4>Without Access</h4>
                     <p className="impact-count">{(greenResults.affectedPopulation / 1000).toFixed(0)}K</p>
                     <p className="impact-desc">Beyond {bufferDistance}m from green space</p>
