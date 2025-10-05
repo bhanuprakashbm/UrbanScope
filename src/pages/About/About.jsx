@@ -31,19 +31,33 @@ function About() {
 
     async function fetchContributors() {
         try {
-
             const response = await fetch(`https://api.github.com/repos/${FOUNDER_NAME}/${repoName}/contributors`)
 
+            if (!response.ok) {
+                console.error('Failed to fetch contributors:', response.status);
+                setContributors([]);
+                return;
+            }
+
             const data = await response.json();
+
+            // Check if data is an array
+            if (!Array.isArray(data)) {
+                console.error('Contributors data is not an array:', data);
+                setContributors([]);
+                return;
+            }
 
             setContributors((prev) => {
                 return data.filter((user, idx) => user.login != FOUNDER_NAME);
             })
 
-            setFounder(data.find((user) => user.login == FOUNDER_NAME));
+            setFounder(data.find((user) => user.login == FOUNDER_NAME) || {});
 
         } catch (error) {
-            console.log(error.message);
+            console.error('Error fetching contributors:', error.message);
+            setContributors([]);
+            setFounder({});
         }
     }
     return (
