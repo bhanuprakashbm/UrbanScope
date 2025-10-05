@@ -12,6 +12,7 @@ body {
   overflow-x: hidden;
   color: rgb(255, 255, 255);
   font-family: "Space Grotesk", sans-serif;
+  padding-top: 70px; /* Space for fixed navbar */
 }
 
 .body::-webkit-scrollbar {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+import logo from '../../assets/logo_white.svg';
 import './Navbar.css';
 
 function Navbar() {
@@ -16,6 +17,11 @@ function Navbar() {
   const handleMenuClose = () => {
     setIsOpen(false);
   };
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (location.hash === '' || location.pathname === '/') {
@@ -82,6 +88,11 @@ function Navbar() {
 
   return (
     <nav className="navbar">
+      <div className="logo">
+        <NavLink to="/" onClick={() => scroll.scrollToTop()}>
+          <img src={logo} alt="UrbanScope Logo" className="logo-img" />
+        </NavLink>
+      </div>
       <div className={`navigator ${isOpen ? 'open' : ''}`}>
         <ul className={`navbar-links ${isOpen ? 'open' : ''}`}>
           <li className="navbar-list-item" onClick={() => { scroll.scrollToTop(); toggleMenu(); }}>
