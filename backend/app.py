@@ -220,4 +220,9 @@ if __name__ == '__main__':
     print("🔗 Frontend: http://localhost:5173")
     print("=" * 60)
     print("\n✨ Ready to analyze urban health data!\n")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    
+    # Get port from environment variable (for production) or use 5000 for local
+    port = int(os.environ.get('PORT', 5000))
+    debug_mode = os.environ.get('FLASK_ENV') != 'production'
+    
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)
