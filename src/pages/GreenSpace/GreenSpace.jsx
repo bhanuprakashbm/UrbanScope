@@ -1,36 +1,36 @@
 import React, { useState } from 'react';
 import SatelliteMap from '../../components/SatelliteMap/SatelliteMap';
 import UrbanCity3D from '../../components/3D_Models/UrbanCity3D';
-import { analyzeGreenSpace, getCityCoordinates } from '../../utils/aiModels';
+import CitySearch from '../../components/CitySearch/CitySearch';
+import { analyzeGreenSpace } from '../../utils/aiModels';
 import './GreenSpace.css';
 
 function GreenSpace() {
-  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedCity, setSelectedCity] = useState(null);
   const [bufferDistance, setBufferDistance] = useState(500);
   const [loading, setLoading] = useState(false);
   const [showMap, setShowMap] = useState(false);
   const [greenResults, setGreenResults] = useState(null);
 
-  const cities = [
-    { name: 'New York', country: 'USA' },
-    { name: 'London', country: 'UK' },
-    { name: 'Tokyo', country: 'Japan' },
-    { name: 'Delhi', country: 'India' },
-    { name: 'São Paulo', country: 'Brazil' },
-    { name: 'Mumbai', country: 'India' }
-  ];
+  const handleCitySelect = (city) => {
+    setSelectedCity(city);
+    console.log('Selected city:', city);
+  };
 
   const handleAnalyze = async () => {
     if (!selectedCity) {
-      alert('Please select a city');
+      alert('Please search and select a city first');
       return;
     }
     
     setLoading(true);
     
     try {
-      const coordinates = getCityCoordinates(selectedCity);
-      const response = await analyzeGreenSpace(selectedCity, coordinates, bufferDistance);
+      const response = await analyzeGreenSpace(
+        selectedCity.name,
+        selectedCity.coordinates,
+        bufferDistance
+      );
       setGreenResults(response.data);
       setShowMap(true);
     } catch (error) {
@@ -117,19 +117,15 @@ function GreenSpace() {
           
           <div className="analysis-controls">
             <div className="control-group">
-              <label>Select City</label>
-              <select 
-                value={selectedCity} 
-                onChange={(e) => setSelectedCity(e.target.value)}
-                className="control-select"
-              >
-                <option value="">Choose a city...</option>
-                {cities.map((city) => (
-                  <option key={city.name} value={city.name}>
-                    {city.name}, {city.country}
-                  </option>
-                ))}
-              </select>
+              <label>🌍 Search Any City Worldwide</label>
+              <CitySearch onCitySelect={handleCitySelect} />
+              {selectedCity && (
+                <div className="selected-city-info">
+                  <span className="info-icon">✅</span>
+                  <span>{selectedCity.name}, {selectedCity.country}</span>
+                  <span className="coords">({selectedCity.lat.toFixed(4)}, {selectedCity.lon.toFixed(4)})</span>
+                </div>
+              )}
             </div>
 
             <div className="control-group">
@@ -149,7 +145,7 @@ function GreenSpace() {
             <button 
               className="analyze-btn"
               onClick={handleAnalyze}
-              disabled={loading}
+              disabled={loading || !selectedCity}
             >
               {loading ? '🔄 Analyzing...' : '🔍 Analyze Green Space'}
             </button>
@@ -207,16 +203,17 @@ function GreenSpace() {
               </div>
 
               {/* Satellite Map */}
-              {showMap && (
+              {showMap && selectedCity && (
                 <div className="map-section">
                   <h3>🛰️ NASA Satellite Imagery - NDVI Vegetation Index</h3>
                   <SatelliteMap 
-                    city={selectedCity}
+                    city={selectedCity.name}
+                    coordinates={selectedCity.coordinates}
                     dataset="greenspace"
                     date={new Date().toISOString().slice(0, 10)}
                   />
                   <p className="map-description">
-                    Landsat NDVI overlay showing vegetation density from NASA GIBS
+                    MODIS NDVI overlay showing vegetation density from NASA GIBS with hexagonal heatmap
                   </p>
                 </div>
               )}

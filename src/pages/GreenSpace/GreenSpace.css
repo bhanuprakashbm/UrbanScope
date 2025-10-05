@@ -1,9 +1,9 @@
 /* Green Space Page Styles */
 .green-space-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   color: #fff;
   padding-bottom: 4rem;
+  position: relative;
 }
 
 /* Header */
@@ -84,6 +84,30 @@
 .data-sources p {
   color: #cbd5e1;
   margin: 0.5rem 0;
+}
+
+/* Selected City Info */
+.selected-city-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #22c55e;
+}
+
+.info-icon {
+  font-size: 1.2rem;
+}
+
+.coords {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-family: 'Courier New', monospace;
 }
 
 /* Green Overview Cards */

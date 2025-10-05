@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import SatelliteMap from '../../components/SatelliteMap/SatelliteMap';
 import UrbanCity3D from '../../components/3D_Models/UrbanCity3D';
-import { analyzeHeatRisk, getCityCoordinates } from '../../utils/aiModels';
+import CitySearch from '../../components/CitySearch/CitySearch';
+import { analyzeHeatRisk } from '../../utils/aiModels';
 import './HeatRisk.css';
 
 function HeatRisk() {
-  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedCity, setSelectedCity] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date().toISOString().slice(0, 10));
   const [loading, setLoading] = useState(false);
   const [showMap, setShowMap] = useState(false);
   const [heatResults, setHeatResults] = useState(null);
 
-  const cities = [
-    { name: 'New York', country: 'USA', lat: 40.7128, lon: -74.0060 },
-    { name: 'London', country: 'UK', lat: 51.5074, lon: -0.1278 },
-    { name: 'Tokyo', country: 'Japan', lat: 35.6762, lon: 139.6503 },
-    { name: 'Delhi', country: 'India', lat: 28.7041, lon: 77.1025 },
-    { name: 'São Paulo', country: 'Brazil', lat: -23.5505, lon: -46.6333 },
-    { name: 'Mumbai', country: 'India', lat: 19.0760, lon: 72.8777 }
-  ];
+  const handleCitySelect = (city) => {
+    setSelectedCity(city);
+    console.log('Selected city:', city);
+  };
 
   const handleAnalyze = async () => {
     if (!selectedCity) {
-      alert('Please select a city');
+      alert('Please search and select a city first');
       return;
     }
     
     setLoading(true);
     
     try {
-      const coordinates = getCityCoordinates(selectedCity);
-      const response = await analyzeHeatRisk(selectedCity, coordinates, currentDate);
+      const response = await analyzeHeatRisk(
+        selectedCity.name, 
+        selectedCity.coordinates, 
+        currentDate
+      );
       setHeatResults(response.data);
       setShowMap(true);
     } catch (error) {
@@ -106,19 +106,15 @@ function HeatRisk() {
           
           <div className="analysis-controls">
             <div className="control-group">
-              <label>Select City</label>
-              <select 
-                value={selectedCity} 
-                onChange={(e) => setSelectedCity(e.target.value)}
-                className="control-select"
-              >
-                <option value="">Choose a city...</option>
-                {cities.map((city) => (
-                  <option key={city.name} value={city.name}>
-                    {city.name}, {city.country}
-                  </option>
-                ))}
-              </select>
+              <label>🌍 Search Any City Worldwide</label>
+              <CitySearch onCitySelect={handleCitySelect} />
+              {selectedCity && (
+                <div className="selected-city-info">
+                  <span className="info-icon">✅</span>
+                  <span>{selectedCity.name}, {selectedCity.country}</span>
+                  <span className="coords">({selectedCity.lat.toFixed(4)}, {selectedCity.lon.toFixed(4)})</span>
+                </div>
+              )}
             </div>
 
             <div className="control-group">
@@ -135,7 +131,7 @@ function HeatRisk() {
             <button 
               className="analyze-btn"
               onClick={handleAnalyze}
-              disabled={loading}
+              disabled={loading || !selectedCity}
             >
               {loading ? '🔄 Analyzing...' : '🔍 Analyze Heat Risk'}
             </button>
@@ -191,16 +187,17 @@ function HeatRisk() {
               </div>
 
               {/* Satellite Map */}
-              {showMap && (
+              {showMap && selectedCity && (
                 <div className="map-section">
                   <h3>🛰️ NASA Satellite Imagery - Land Surface Temperature</h3>
                   <SatelliteMap 
-                    city={selectedCity}
+                    city={selectedCity.name}
+                    coordinates={selectedCity.coordinates}
                     dataset="heat"
                     date={currentDate}
                   />
                   <p className="map-description">
-                    MODIS Land Surface Temperature overlay from NASA GIBS
+                    MODIS Land Surface Temperature overlay from NASA GIBS with hexagonal heatmap
                   </p>
                 </div>
               )}

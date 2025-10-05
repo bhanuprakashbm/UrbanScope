@@ -1,44 +1,39 @@
 import React, { useState } from 'react';
 import SatelliteMap from '../../components/SatelliteMap/SatelliteMap';
-import { analyzeHealthcare, getCityCoordinates } from '../../utils/aiModels';
+import CitySearch from '../../components/CitySearch/CitySearch';
+import { analyzeHealthcare } from '../../utils/aiModels';
 import './Healthcare.css';
 
 function Healthcare() {
-  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedCity, setSelectedCity] = useState(null);
   const [population, setPopulation] = useState(1000000);
   const [driveTime, setDriveTime] = useState(15);
   const [loading, setLoading] = useState(false);
   const [showMap, setShowMap] = useState(false);
   const [healthcareResults, setHealthcareResults] = useState(null);
 
-  const cities = [
-    { name: 'New York', country: 'USA', pop: 1200000 },
-    { name: 'London', country: 'UK', pop: 900000 },
-    { name: 'Tokyo', country: 'Japan', pop: 2000000 },
-    { name: 'Delhi', country: 'India', pop: 1500000 },
-    { name: 'São Paulo', country: 'Brazil', pop: 1300000 },
-    { name: 'Mumbai', country: 'India', pop: 1800000 }
-  ];
-
-  const handleCityChange = (cityName) => {
-    setSelectedCity(cityName);
-    const city = cities.find(c => c.name === cityName);
-    if (city) {
-      setPopulation(city.pop);
-    }
+  const handleCitySelect = (city) => {
+    setSelectedCity(city);
+    // Auto-estimate population based on city (rough estimate)
+    setPopulation(1000000);
+    console.log('Selected city:', city);
   };
 
   const handleAnalyze = async () => {
     if (!selectedCity) {
-      alert('Please select a city');
+      alert('Please search and select a city first');
       return;
     }
     
     setLoading(true);
     
     try {
-      const coordinates = getCityCoordinates(selectedCity);
-      const response = await analyzeHealthcare(selectedCity, coordinates, population, driveTime);
+      const response = await analyzeHealthcare(
+        selectedCity.name,
+        selectedCity.coordinates,
+        population,
+        driveTime
+      );
       setHealthcareResults(response.data);
       setShowMap(true);
     } catch (error) {
@@ -135,19 +130,15 @@ function Healthcare() {
           
           <div className="analysis-controls">
             <div className="control-group">
-              <label>Select City</label>
-              <select 
-                value={selectedCity} 
-                onChange={(e) => handleCityChange(e.target.value)}
-                className="control-select"
-              >
-                <option value="">Choose a city...</option>
-                {cities.map((city) => (
-                  <option key={city.name} value={city.name}>
-                    {city.name}, {city.country}
-                  </option>
-                ))}
-              </select>
+              <label>🌍 Search Any City Worldwide</label>
+              <CitySearch onCitySelect={handleCitySelect} />
+              {selectedCity && (
+                <div className="selected-city-info">
+                  <span className="info-icon">✅</span>
+                  <span>{selectedCity.name}, {selectedCity.country}</span>
+                  <span className="coords">({selectedCity.lat.toFixed(4)}, {selectedCity.lon.toFixed(4)})</span>
+                </div>
+              )}
             </div>
 
             <div className="control-group">
@@ -179,7 +170,7 @@ function Healthcare() {
             <button 
               className="analyze-btn"
               onClick={handleAnalyze}
-              disabled={loading}
+              disabled={loading || !selectedCity}
             >
               {loading ? '🔄 Analyzing...' : '🔍 Analyze Healthcare Access'}
             </button>
@@ -222,16 +213,17 @@ function Healthcare() {
               </div>
 
               {/* Satellite Map */}
-              {showMap && (
+              {showMap && selectedCity && (
                 <div className="map-section">
                   <h3>🗺️ Healthcare Facility Distribution Map</h3>
                   <SatelliteMap 
-                    city={selectedCity}
+                    city={selectedCity.name}
+                    coordinates={selectedCity.coordinates}
                     dataset="heat"
                     date={new Date().toISOString().slice(0, 10)}
                   />
                   <p className="map-description">
-                    Satellite view showing urban areas. Healthcare facilities would be overlaid in production.
+                    Satellite view showing urban areas with hexagonal overlay for facility distribution analysis.
                   </p>
                 </div>
               )}

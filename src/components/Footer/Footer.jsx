@@ -37,16 +37,16 @@ function Footer() {
         </a>
         <p className="col-md-4 mb-0 text-light text-center">©️ {currentYear} UrbanScope. All Rights Reserved</p>
         <div className="col-md-4 d-flex justify-content-center">
-          <a href="https://github.com/Ghovkg02" className="text-light me-4">
+          <a href="https://github.com/mouryas-aiml" className="text-light me-4">
             <i className="fab fa-github"></i>
           </a>
-          <a href="https://x.com/ghovv_io" className="text-light me-4">
+          <a href="https://x.com/Mr_Mourya_Gowda" className="text-light me-4">
             <i className="fab fa-x-twitter"></i>
           </a>
-          <a href="https://instagram.com/ghov_kg_02" className="text-light me-4">
+          <a href="https://instagram.com/_mourya__gowda_" className="text-light me-4">
             <i className="fab fa-instagram"></i>
           </a>
-          <a href="https://www.linkedin.com/in/ghovkg02/" className="text-light">
+          <a href="https://www.linkedin.com/in/mourya-s/" className="text-light">
             <i className="fab fa-linkedin-in"></i>
           </a>
         </div>
