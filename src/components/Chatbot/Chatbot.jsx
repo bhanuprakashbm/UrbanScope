@@ -39,59 +39,94 @@ function Chatbot() {
     };
     
     setMessages(prev => [...prev, userMessage]);
+    const currentInput = inputMessage;
     setInputMessage('');
     setIsTyping(true);
 
-    // TODO: Replace with actual API call
-    // const API_KEY = import.meta.env.VITE_CHATBOT_API_KEY;
-    
-    // Simulate API response (replace this with actual API call)
-    setTimeout(() => {
-      const botResponse = {
-        type: 'bot',
-        text: 'This is a placeholder response. Please integrate your chatbot API by adding VITE_CHATBOT_API_KEY to your environment variables.',
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, botResponse]);
-      setIsTyping(false);
-    }, 1000);
-
-    /* 
-    // Example API integration (uncomment and modify):
     try {
-      const response = await fetch('YOUR_API_ENDPOINT', {
+      const API_KEY = import.meta.env.VITE_CHATBOT_API_KEY;
+      
+      // Check if API key is loaded
+      if (!API_KEY) {
+        const errorResponse = {
+          type: 'bot',
+          text: 'API key not found. Please restart your development server (stop with Ctrl+C and run "npm run dev" again) to load the environment variables.',
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, errorResponse]);
+        setIsTyping(false);
+        return;
+      }
+      
+      // Google Gemini API call
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${API_KEY}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          message: inputMessage,
-          // Add other parameters as needed
+          contents: [{
+            parts: [{
+              text: `You are UrbanScope AI Assistant, an expert in urban health analysis, NASA satellite data, heat risk assessment, green space planning, and healthcare accessibility. Help users understand urban health data and provide insights about cities. User question: ${currentInput}`
+            }]
+          }],
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 500,
+          }
         })
       });
       
       const data = await response.json();
       
-      const botResponse = {
-        type: 'bot',
-        text: data.response, // Adjust based on your API response structure
-        timestamp: new Date()
-      };
+      // Check for rate limit error
+      if (data.error) {
+        if (data.error.message?.includes('rate limit') || data.error.message?.includes('resource_exhausted')) {
+          const rateLimitResponse = {
+            type: 'bot',
+            text: 'The AI service is currently experiencing high demand. Please try again in a few moments. In the meantime, I can help you with:\n\n• Urban heat risk analysis\n• Green space accessibility\n• Healthcare facility coverage\n• NASA satellite data interpretation',
+            timestamp: new Date()
+          };
+          setMessages(prev => [...prev, rateLimitResponse]);
+          setIsTyping(false);
+          return;
+        }
+        throw new Error(data.error.message);
+      }
       
-      setMessages(prev => [...prev, botResponse]);
+      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+        const botResponse = {
+          type: 'bot',
+          text: data.candidates[0].content.parts[0].text,
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, botResponse]);
+      } else {
+        throw new Error('Invalid response format');
+      }
+      
       setIsTyping(false);
     } catch (error) {
       console.error('Chatbot API error:', error);
+      
+      let errorMessage = 'Sorry, I encountered an error connecting to the AI service. ';
+      
+      if (error.message?.includes('Failed to fetch')) {
+        errorMessage += 'Please check your internet connection and try again.';
+      } else if (error.message?.includes('API key')) {
+        errorMessage += 'There seems to be an issue with the API key. Please contact support.';
+      } else {
+        errorMessage += 'Please try again in a moment. If the issue persists, try restarting the development server.';
+      }
+      
       const errorResponse = {
         type: 'bot',
-        text: 'Sorry, I encountered an error. Please try again.',
+        text: errorMessage,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, errorResponse]);
       setIsTyping(false);
     }
-    */
   };
 
   const formatTime = (date) => {

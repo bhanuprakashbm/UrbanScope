@@ -1,36 +1,19 @@
-/* NASA-Inspired Professional Heat Risk Analysis Interface */
+/* NASA-Inspired Professional Heat Risk Analysis Page */
 
-/* Import NASA-style fonts */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
-
-/* Root Variables */
-:root {
-  --nasa-blue: #0B3D91;
-  --nasa-red: #FF1D25;
-  --nasa-white: #FFFFFF;
-  --dark-bg: #0F172A;
-  --card-bg: rgba(15, 23, 42, 0.8);
-  --border-color: rgba(59, 130, 246, 0.2);
-  --text-primary: #F8FAFC;
-  --text-secondary: #CBD5E1;
-  --accent-blue: #3B82F6;
-  --accent-orange: #F59E0B;
-  --success-green: #10B981;
-  --warning-yellow: #F59E0B;
-  --danger-red: #EF4444;
-}
+/* Import Professional Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 /* Page Container */
 .heat-risk-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--dark-bg) 0%, #1E293B 100%);
-  color: var(--text-primary);
-  font-family: 'Space Grotesk', sans-serif;
+  background: #0a0e27;
+  color: #e2e8f0;
+  font-family: 'Inter', sans-serif;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Animated background grid */
+/* Background Grid Pattern */
 .heat-risk-page::before {
   content: '';
   position: fixed;
@@ -39,40 +22,20 @@
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
-    linear-gradient(rgba(59, 130, 246, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.02) 1px, transparent 1px);
-  background-size: 800px 800px, 600px 600px, 40px 40px, 40px 40px;
-  animation: backgroundMove 20s ease-in-out infinite;
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
   pointer-events: none;
   z-index: 0;
 }
 
-@keyframes backgroundMove {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-20px, -20px); }
-}
-
 /* Header Section */
 .heat-header {
-  padding: 6rem 2rem 2rem;
+  padding: 8rem 2rem 3rem;
   text-align: center;
   position: relative;
-  background: linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%);
-  border-bottom: 2px solid var(--border-color);
-}
-
-.heat-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-blue), var(--danger-red));
-  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(239, 68, 68, 0.05) 0%, transparent 100%);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.1);
 }
 
 .heat-header-content {
@@ -83,26 +46,36 @@
 }
 
 .heat-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 3rem;
+  font-weight: 800;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
+  color: #ffffff;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.heat-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
 }
 
 .heat-subtitle {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  font-weight: 400;
+  font-size: 1.1rem;
+  color: #94a3b8;
   max-width: 800px;
-  margin: 0 auto 2rem;
+  margin: 2rem auto 0;
   line-height: 1.6;
+  font-weight: 400;
 }
 
-/* Mission Control Style Analysis Section */
+/* Analysis Section */
 .analysis-section {
   padding: 3rem 2rem;
   position: relative;
@@ -115,178 +88,141 @@
 }
 
 .section-title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
   margin-bottom: 2rem;
-  text-align: center;
-  position: relative;
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .section-title::before {
   content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent-blue), var(--danger-red));
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(180deg, #00d4ff, #0ea5e9);
   border-radius: 2px;
 }
 
-/* Control Panel */
+/* Analysis Controls - NASA Mission Control Style */
 .analysis-controls {
-  background: var(--card-bg);
+  background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(20px);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
   padding: 2rem;
   margin-bottom: 3rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.analysis-controls::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent-blue), var(--danger-red), var(--accent-blue));
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-
-.controls-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .control-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.control-group:last-child {
+  margin-bottom: 0;
 }
 
 .control-group label {
-  font-size: 0.875rem;
+  display: block;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #00d4ff;
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
 }
 
-.control-input, .control-select {
-  background: rgba(30, 41, 59, 0.8);
-  border: 1px solid var(--border-color);
+.control-input,
+.control-select {
+  width: 100%;
+  background: rgba(10, 14, 39, 0.8);
+  border: 1px solid rgba(0, 212, 255, 0.3);
   border-radius: 8px;
   padding: 0.75rem 1rem;
-  color: var(--text-primary);
-  font-size: 1rem;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  font-family: 'Roboto Mono', monospace;
   transition: all 0.3s ease;
-  font-family: 'JetBrains Mono', monospace;
 }
 
-.control-input:focus, .control-select:focus {
+.control-input:focus,
+.control-select:focus {
   outline: none;
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  background: rgba(30, 41, 59, 1);
+  border-color: #00d4ff;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+  background: rgba(10, 14, 39, 0.95);
 }
 
+/* Selected City Info */
 .selected-city-info {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   padding: 0.75rem 1rem;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.2);
   border-radius: 8px;
-  color: var(--success-green);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9rem;
 }
 
 .coords {
-  color: var(--text-secondary);
-  font-size: 0.75rem;
+  color: #64748b;
+  font-size: 0.85rem;
 }
 
-/* Analyze Button */
+/* Analyze Button - Mission Control Style */
 .analyze-btn {
-  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--nasa-blue) 100%);
+  width: 100%;
+  background: linear-gradient(135deg, #00d4ff 0%, #0ea5e9 100%);
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 1rem 2rem;
-  color: var(--nasa-white);
+  color: #0a0e27;
   font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  position: relative;
-  overflow: hidden;
-  min-width: 200px;
-  margin: 0 auto;
-  display: block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+  margin-top: 1.5rem;
 }
 
-.analyze-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.analyze-btn:hover::before {
-  left: 100%;
-}
-
-.analyze-btn:hover {
+.analyze-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 6px 30px rgba(0, 212, 255, 0.5);
 }
 
 .analyze-btn:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
 }
 
-/* Data Cards */
+/* Risk Overview Cards - Data Dashboard Style */
 .risk-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
 
 .risk-card {
-  background: var(--card-bg);
+  background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(20px);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: 2rem;
-  text-align: center;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-left: 4px solid;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
 }
 
 .risk-card::before {
@@ -295,90 +231,93 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--danger-red), var(--warning-yellow), var(--success-green));
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
 }
 
 .risk-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  border-color: var(--accent-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 212, 255, 0.2);
+  border-color: #00d4ff;
 }
 
 .risk-card h3 {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: #64748b;
+  margin-bottom: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem;
-  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .risk-value {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #ffffff;
   margin-bottom: 0.5rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
+  line-height: 1;
 }
 
 .risk-label {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
+  font-size: 0.9rem;
+  color: #94a3b8;
   font-weight: 500;
 }
 
-/* Visualization Sections */
-.visualization-section, .map-section {
-  background: var(--card-bg);
+/* Visualization Section */
+.visualization-section,
+.map-section {
+  background: rgba(15, 23, 42, 0.4);
   backdrop-filter: blur(20px);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
-  position: relative;
-  overflow: hidden;
 }
 
-.visualization-section h3, .map-section h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
+.visualization-section h3,
+.map-section h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #00d4ff;
   margin-bottom: 1.5rem;
-  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.viz-description, .map-description {
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 0.875rem;
+.viz-description,
+.map-description {
   margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #64748b;
   font-style: italic;
 }
 
-/* Detailed Metrics */
+/* Detailed Metrics - Scientific Data Table */
 .detailed-metrics {
-  background: var(--card-bg);
+  background: rgba(15, 23, 42, 0.4);
   backdrop-filter: blur(20px);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
 }
 
 .detailed-metrics h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 2rem;
-  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #00d4ff;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
 }
 
 .metric-item {
@@ -386,46 +325,106 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background: rgba(30, 41, 59, 0.5);
-  border: 1px solid var(--border-color);
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(0, 212, 255, 0.1);
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .metric-item:hover {
-  background: rgba(30, 41, 59, 0.8);
-  border-color: var(--accent-blue);
+  border-color: rgba(0, 212, 255, 0.3);
+  background: rgba(10, 14, 39, 0.8);
 }
 
 .metric-label {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
+  font-size: 0.9rem;
+  color: #94a3b8;
   font-weight: 500;
 }
 
 .metric-value {
-  font-size: 1.125rem;
-  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* Vulnerable Section */
+.vulnerable-section {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.vulnerable-section h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fbbf24;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.vulnerable-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.vulnerable-card {
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.vulnerable-card:hover {
+  border-color: rgba(251, 191, 36, 0.4);
+  transform: translateY(-2px);
+}
+
+.vulnerable-card h4 {
+  font-size: 1rem;
   font-weight: 600;
-  font-family: 'JetBrains Mono', monospace;
+  color: #fbbf24;
+  margin-bottom: 0.75rem;
+}
+
+.vulnerable-count {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.vulnerable-desc {
+  font-size: 0.85rem;
+  color: #94a3b8;
 }
 
 /* Recommendations */
 .recommendations-section {
-  background: var(--card-bg);
+  background: rgba(15, 23, 42, 0.4);
   backdrop-filter: blur(20px);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
 }
 
 .recommendations-section h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 2rem;
-  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #22c55e;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .recommendations-list {
@@ -436,137 +435,120 @@
 
 .recommendation-item {
   display: flex;
-  align-items: flex-start;
   gap: 1rem;
-  padding: 1.5rem;
-  background: rgba(30, 41, 59, 0.5);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+  padding: 1rem;
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .recommendation-item:hover {
-  background: rgba(30, 41, 59, 0.8);
-  border-color: var(--accent-blue);
-  transform: translateX(5px);
+  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(10, 14, 39, 0.8);
 }
 
 .rec-number {
-  background: linear-gradient(135deg, var(--accent-blue), var(--nasa-blue));
-  color: var(--nasa-white);
+  flex-shrink: 0;
   width: 32px;
   height: 32px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 0.875rem;
-  flex-shrink: 0;
-  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #0a0e27;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .recommendation-item p {
   margin: 0;
-  color: var(--text-secondary);
+  color: #e2e8f0;
   line-height: 1.6;
 }
 
 /* Data Sources */
 .data-source-section {
-  background: var(--card-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: 2rem;
+  background: rgba(15, 23, 42, 0.3);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
   margin-bottom: 2rem;
 }
 
 .data-source-section h3 {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-  text-align: center;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .data-source-text {
-  color: var(--text-secondary);
+  font-size: 0.9rem;
+  color: #94a3b8;
   line-height: 1.6;
-  text-align: center;
-  font-size: 0.875rem;
-}
-
-/* Loading States */
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(15, 23, 42, 0.9);
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.loading-spinner {
-  width: 60px;
-  height: 60px;
-  border: 3px solid var(--border-color);
-  border-top: 3px solid var(--accent-blue);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  margin: 0;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .heat-header {
-    padding: 4rem 1rem 2rem;
-  }
-  
-  .heat-title {
-    font-size: 2.5rem;
-  }
-  
-  .analysis-section {
-    padding: 2rem 1rem;
-  }
-  
-  .controls-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .risk-overview {
-    grid-template-columns: 1fr;
-  }
-  
-  .metrics-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
   .heat-title {
     font-size: 2rem;
   }
-  
+
+  .heat-subtitle {
+    font-size: 1rem;
+  }
+
+  .risk-overview {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vulnerable-grid {
+    grid-template-columns: 1fr;
+  }
+
   .analysis-controls {
     padding: 1.5rem;
   }
-  
-  .risk-card {
-    padding: 1.5rem;
+}
+
+/* Loading State */
+.analyze-btn:disabled::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
+  border: 2px solid #0a0e27;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  
-  .risk-value {
-    font-size: 2.5rem;
-  }
+}
+
+/* Glow Effects */
+.risk-card:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.05), transparent);
+  pointer-events: none;
 }
