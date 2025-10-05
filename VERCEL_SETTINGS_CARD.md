@@ -42,7 +42,21 @@ Name: VITE_CHATBOT_API_KEY
 ```
 
 ```
-Value: AIzaSyDSqavV40K2b6Ad3gcLAGmnB8HjSmzzVEc
+Value: AIzaSyBe0jFDn1nSrXNkeKFWxCYrsUW5HJt5uWc
+```
+
+**Environments:** Select **All** (Production, Preview, Development)
+
+---
+
+## 📝 Variable 3: Google Maps API Key
+
+```
+Name: VITE_GOOGLE_MAPS_API_KEY
+```
+
+```
+Value: AIzaSyD5Ma3XSP2T42QV_ZplRQfM55R63HnaeAs
 ```
 
 **Environments:** Select **All** (Production, Preview, Development)
