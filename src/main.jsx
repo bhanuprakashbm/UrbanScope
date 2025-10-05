@@ -4,16 +4,20 @@ import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } 
 import './index.css'
 import App from './App.jsx'
 import Home from "./pages/Home/Home.jsx"
-import NASAData from "./pages/NASAData/NASAData.jsx"
-import About from "./pages/About/About.jsx"
+import HeatRisk from "./pages/HeatRisk/HeatRisk.jsx"
+import GreenSpace from "./pages/GreenSpace/GreenSpace.jsx"
+import Healthcare from "./pages/Healthcare/Healthcare.jsx"
 import UrbanVR from "./pages/UrbanVR/UrbanVR.jsx"
+import About from "./pages/About/About.jsx"
 import NotFoundPage from "./pages/404 Page/NotfoundPage.jsx"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route index element={<Home />} />
-      <Route path='/nasa-data' element={<NASAData />} />
+      <Route path='/heat-risk' element={<HeatRisk />} />
+      <Route path='/green-space' element={<GreenSpace />} />
+      <Route path='/healthcare' element={<Healthcare />} />
       <Route path='/urban-vr' element={<UrbanVR />} />
       <Route path='/about' element={<About />} />
       <Route path='*' element={<NotFoundPage />} />

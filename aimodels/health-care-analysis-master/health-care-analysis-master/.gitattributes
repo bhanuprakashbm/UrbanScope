@@ -1,5 +1,0 @@
-*.txt linguist-vendored
-.gitattributes linguist-vendored
-Venezuela/* linguist-vendored
-README.md linguist-documentation=true
-

@@ -1,8 +1,0 @@
-.vscode
-node_modules
-.DS_Store
-dist
-src/**/*.js
-src/**/*.js.map
-config.json
-package-lock.json
