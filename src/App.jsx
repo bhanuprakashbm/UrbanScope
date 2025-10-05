@@ -6,6 +6,7 @@ import Toast from "./components/Toast/Toast.jsx"
 import BackGround from './components/BackGround/BackGround.jsx'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
 import PreLoader from './components/PreLoader/PreLoader.jsx'
+import Chatbot from './components/Chatbot/Chatbot.jsx'
 import { useState } from 'react'
 
 
@@ -21,6 +22,7 @@ function App() {
       <Navbar />
       <Outlet setIsPreLoading={setIsPreLoading} />
       <ScrollToTop />
+      <Chatbot />
       <Footer />
     </>
   );

@@ -46,78 +46,22 @@ function GreenSpace() {
       {/* Header */}
       <section className="green-header">
         <div className="green-header-content">
-          <h1 className="green-title">🌳 Green Space Exposure Analysis</h1>
+          <h1 className="green-title">Green Space Exposure Analysis</h1>
           <p className="green-subtitle">
             Comprehensive assessment of urban green spaces using GreenEx_Py methodology
           </p>
-          <div className="green-info-badges">
-            <span className="info-badge">🌿 Availability</span>
-            <span className="info-badge">🚶 Accessibility</span>
-            <span className="info-badge">👁️ Visibility</span>
-          </div>
         </div>
       </section>
 
-      {/* Model Information */}
-      <section className="model-info-section">
-        <div className="container">
-          <div className="model-info-card">
-            <h2>🔬 GreenEx_Py - Three-Perspective Analysis</h2>
-            <div className="perspectives-grid">
-              <div className="perspective-card">
-                <h3>🌿 Availability</h3>
-                <ul>
-                  <li>NDVI (Normalized Difference Vegetation Index)</li>
-                  <li>Total green space coverage (%)</li>
-                  <li>Number of parks and green areas</li>
-                  <li>Tree canopy coverage</li>
-                </ul>
-              </div>
-              <div className="perspective-card">
-                <h3>🚶 Accessibility</h3>
-                <ul>
-                  <li>Distance to nearest park/green space</li>
-                  <li>WHO recommendation: &lt;300m (5-min walk)</li>
-                  <li>Population within buffer zones</li>
-                  <li>Accessibility score (0-100)</li>
-                </ul>
-              </div>
-              <div className="perspective-card">
-                <h3>👁️ Visibility</h3>
-                <ul>
-                  <li>Green Visibility Index (GVI)</li>
-                  <li>Street-level greenery perception</li>
-                  <li>Visual exposure to vegetation</li>
-                  <li>Psychological health benefits</li>
-                </ul>
-              </div>
-            </div>
-            <div className="data-sources">
-              <h4>📡 Data Sources</h4>
-              <p><strong>Sentinel-2:</strong> NDVI vegetation analysis (10m resolution)</p>
-              <p><strong>ESA WorldCover:</strong> Land cover classification</p>
-              <p><strong>OpenStreetMap:</strong> Park locations and boundaries</p>
-              <p><strong>Planetary Computer:</strong> Cloud-based geospatial processing</p>
-            </div>
-            <div className="model-source">
-              <p>
-                <strong>Based on:</strong> <a href="https://github.com/Spatial-Data-Science-and-GEO-AI-Lab/GreenEx_Py" target="_blank" rel="noopener noreferrer">
-                  Spatial-Data-Science-and-GEO-AI-Lab/GreenEx_Py
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Analysis Controls */}
       <section className="analysis-section">
         <div className="container">
-          <h2 className="section-title">🎯 Analyze Green Space Exposure</h2>
+          <h2 className="section-title">Analysis Dashboard</h2>
           
           <div className="analysis-controls">
             <div className="control-group">
-              <label>🌍 Search Any City Worldwide</label>
+              <label>City Selection</label>
               <CitySearch onCitySelect={handleCitySelect} />
               {selectedCity && (
                 <div className="selected-city-info">
@@ -147,7 +91,7 @@ function GreenSpace() {
               onClick={handleAnalyze}
               disabled={loading || !selectedCity}
             >
-              {loading ? '🔄 Analyzing...' : '🔍 Analyze Green Space'}
+              {loading ? 'Analyzing...' : 'Analyze Green Space'}
             </button>
           </div>
 
@@ -157,14 +101,12 @@ function GreenSpace() {
               {/* Overview Cards */}
               <div className="green-overview">
                 <div className="green-card" style={{ borderColor: greenResults.statusColor }}>
-                  <div className="green-icon">📊</div>
                   <h3>NDVI</h3>
                   <div className="green-value">{greenResults.meanNDVI.toFixed(2)}</div>
                   <p className="green-label">{greenResults.ndviCategory}</p>
                 </div>
 
                 <div className="green-card" style={{ borderColor: greenResults.statusColor }}>
-                  <div className="green-icon">🌳</div>
                   <h3>Coverage</h3>
                   <div className="green-value">{greenResults.greenspaceCoverage}%</div>
                   <p className="green-label" style={{ color: greenResults.statusColor }}>
@@ -173,7 +115,6 @@ function GreenSpace() {
                 </div>
 
                 <div className="green-card" style={{ borderColor: greenResults.accessibilityColor }}>
-                  <div className="green-icon">🚶</div>
                   <h3>Accessibility</h3>
                   <div className="green-value">{greenResults.accessibilityScore}/100</div>
                   <p className="green-label" style={{ color: greenResults.accessibilityColor }}>
@@ -182,7 +123,6 @@ function GreenSpace() {
                 </div>
 
                 <div className="green-card" style={{ borderColor: greenResults.statusColor }}>
-                  <div className="green-icon">👁️</div>
                   <h3>Visibility</h3>
                   <div className="green-value">{greenResults.visibilityScore}</div>
                   <p className="green-label">Visibility Index</p>
@@ -191,7 +131,7 @@ function GreenSpace() {
 
               {/* 3D Visualization */}
               <div className="visualization-section">
-                <h3>🏙️ 3D Urban Green Space Visualization</h3>
+                <h3>3D Urban Green Space Visualization</h3>
                 <UrbanCity3D 
                   heatLevel="moderate"
                   greenCoverage={greenResults.greenspaceCoverage || 20}
@@ -205,7 +145,7 @@ function GreenSpace() {
               {/* Satellite Map */}
               {showMap && selectedCity && (
                 <div className="map-section">
-                  <h3>🛰️ NASA Satellite Imagery - NDVI Vegetation Index</h3>
+                  <h3>NASA Satellite Imagery - NDVI Vegetation Index</h3>
                   <SatelliteMap 
                     city={selectedCity.name}
                     coordinates={selectedCity.coordinates}
@@ -220,7 +160,7 @@ function GreenSpace() {
 
               {/* Detailed Metrics */}
               <div className="detailed-metrics">
-                <h3>📈 Detailed Analysis</h3>
+                <h3>Detailed Analysis</h3>
                 <div className="metrics-grid">
                   <div className="metric-item">
                     <span className="metric-label">Total Green Area</span>
@@ -274,7 +214,7 @@ function GreenSpace() {
 
               {/* Gap Analysis */}
               <div className="gap-analysis-section">
-                <h3>📊 Gap Analysis</h3>
+                <h3>Gap Analysis</h3>
                 <div className="gap-card">
                   <div className="gap-visual">
                     <div className="gap-bar">
@@ -318,22 +258,22 @@ function GreenSpace() {
 
               {/* Three Perspectives Summary */}
               <div className="perspectives-summary">
-                <h3>🎯 Three-Perspective Summary</h3>
+                <h3>Three-Perspective Summary</h3>
                 <div className="summary-grid">
                   <div className="summary-card">
-                    <h4>🌿 Availability: {greenResults.metrics.availability}%</h4>
+                    <h4>Availability: {greenResults.metrics.availability}%</h4>
                     <div className="progress-bar">
                       <div className="progress-fill" style={{ width: `${greenResults.metrics.availability}%` }}></div>
                     </div>
                   </div>
                   <div className="summary-card">
-                    <h4>🚶 Accessibility: {greenResults.metrics.accessibility}/100</h4>
+                    <h4>Accessibility: {greenResults.metrics.accessibility}/100</h4>
                     <div className="progress-bar">
                       <div className="progress-fill" style={{ width: `${greenResults.metrics.accessibility}%` }}></div>
                     </div>
                   </div>
                   <div className="summary-card">
-                    <h4>👁️ Visibility: {greenResults.metrics.visibility}</h4>
+                    <h4>Visibility: {greenResults.metrics.visibility}</h4>
                     <div className="progress-bar">
                       <div className="progress-fill" style={{ width: `${greenResults.metrics.visibility}%` }}></div>
                     </div>
@@ -343,7 +283,7 @@ function GreenSpace() {
 
               {/* Recommendations */}
               <div className="recommendations-section">
-                <h3>💡 AI-Powered Recommendations</h3>
+                <h3>Recommendations</h3>
                 <div className="recommendations-list">
                   {greenResults.recommendations.map((rec, index) => (
                     <div key={index} className="recommendation-item">
@@ -356,7 +296,7 @@ function GreenSpace() {
 
               {/* Data Sources */}
               <div className="data-source-section">
-                <h3>📡 Data Sources</h3>
+                <h3>Data Sources</h3>
                 <p className="data-source-text">{greenResults.dataSource}</p>
               </div>
             </>
@@ -364,30 +304,6 @@ function GreenSpace() {
         </div>
       </section>
 
-      {/* Methodology Section */}
-      <section className="methodology-section">
-        <div className="container">
-          <h2>🔬 Methodology</h2>
-          <div className="methodology-grid">
-            <div className="method-card">
-              <h4>1️⃣ NDVI Analysis</h4>
-              <p>Sentinel-2 satellite data provides vegetation density through NDVI calculations</p>
-            </div>
-            <div className="method-card">
-              <h4>2️⃣ Spatial Analysis</h4>
-              <p>OpenStreetMap data identifies park locations and calculates accessibility buffers</p>
-            </div>
-            <div className="method-card">
-              <h4>3️⃣ Visibility Assessment</h4>
-              <p>Street-level analysis determines visual exposure to green spaces</p>
-            </div>
-            <div className="method-card">
-              <h4>4️⃣ Integration</h4>
-              <p>Three perspectives combined for comprehensive green space assessment</p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

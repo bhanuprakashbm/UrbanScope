@@ -49,88 +49,22 @@ function Healthcare() {
       {/* Header */}
       <section className="healthcare-header">
         <div className="healthcare-header-content">
-          <h1 className="healthcare-title">🏥 Healthcare Facility Access Analysis</h1>
+          <h1 className="healthcare-title">Healthcare Facility Access Analysis</h1>
           <p className="healthcare-subtitle">
-            Comprehensive assessment of healthcare accessibility using drive-time isoline analysis
+            Advanced drive-time isoline analysis and population-based accessibility assessment using real-world data
           </p>
-          <div className="healthcare-info-badges">
-            <span className="info-badge">🗺️ Facility Mapping</span>
-            <span className="info-badge">⏱️ Drive-Time Analysis</span>
-            <span className="info-badge">👥 Population Coverage</span>
-          </div>
         </div>
       </section>
 
-      {/* Model Information */}
-      <section className="model-info-section">
-        <div className="container">
-          <div className="model-info-card">
-            <h2>🔬 Healthcare Access Methodology</h2>
-            <div className="methodology-grid-info">
-              <div className="method-info-card">
-                <h3>🗺️ A. Facility Mapping</h3>
-                <ul>
-                  <li>Primary care centers</li>
-                  <li>Hospitals</li>
-                  <li>Emergency centers</li>
-                  <li>Specialist facilities</li>
-                </ul>
-              </div>
-              <div className="method-info-card">
-                <h3>⏱️ B. Drive-Time Isoline Analysis</h3>
-                <ul>
-                  <li>5-minute access zones</li>
-                  <li>10-minute access zones</li>
-                  <li>15-minute access zones (WHO standard)</li>
-                  <li>Road network analysis</li>
-                </ul>
-              </div>
-              <div className="method-info-card">
-                <h3>👥 C. Population Overlay</h3>
-                <ul>
-                  <li>Population within service areas</li>
-                  <li>Underserved population identification</li>
-                  <li>Coverage percentage calculation</li>
-                  <li>Demographic analysis</li>
-                </ul>
-              </div>
-              <div className="method-info-card">
-                <h3>📊 D. Resource Assessment</h3>
-                <ul>
-                  <li>Beds per 1,000 population</li>
-                  <li>Doctors per 1,000 population</li>
-                  <li>Facilities per 100,000 population</li>
-                  <li>Quality score calculation</li>
-                </ul>
-              </div>
-            </div>
-            <div className="data-sources">
-              <h4>📡 Data Sources</h4>
-              <p><strong>healthsites.io:</strong> Healthcare facility locations</p>
-              <p><strong>GHS-POP:</strong> Population distribution</p>
-              <p><strong>OpenStreetMap:</strong> Road networks</p>
-              <p><strong>GADM:</strong> Administrative boundaries</p>
-              <p><strong>Openrouteservice API:</strong> Drive-time calculations</p>
-            </div>
-            <div className="model-source">
-              <p>
-                <strong>Based on:</strong> <a href="https://github.com/radoslawkrolikowski/health-care-analysis" target="_blank" rel="noopener noreferrer">
-                  radoslawkrolikowski/health-care-analysis
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Analysis Controls */}
       <section className="analysis-section">
         <div className="container">
-          <h2 className="section-title">🎯 Analyze Healthcare Access</h2>
+          <h2 className="section-title">Analysis Dashboard</h2>
           
           <div className="analysis-controls">
             <div className="control-group">
-              <label>🌍 Search Any City Worldwide</label>
+              <label>City Selection</label>
               <CitySearch onCitySelect={handleCitySelect} />
               {selectedCity && (
                 <div className="selected-city-info">
@@ -172,7 +106,7 @@ function Healthcare() {
               onClick={handleAnalyze}
               disabled={loading || !selectedCity}
             >
-              {loading ? '🔄 Analyzing...' : '🔍 Analyze Healthcare Access'}
+              {loading ? 'Analyzing...' : 'Analyze Healthcare Access'}
             </button>
           </div>
 
@@ -182,7 +116,6 @@ function Healthcare() {
               {/* Overview Cards */}
               <div className="healthcare-overview">
                 <div className="healthcare-card" style={{ borderColor: healthcareResults.statusColor }}>
-                  <div className="healthcare-icon">🏥</div>
                   <h3>Facilities</h3>
                   <div className="healthcare-value">{healthcareResults.facilitiesCount}</div>
                   <p className="healthcare-label">Total Healthcare Centers</p>
@@ -198,14 +131,12 @@ function Healthcare() {
                 </div>
 
                 <div className="healthcare-card" style={{ borderColor: healthcareResults.statusColor }}>
-                  <div className="healthcare-icon">👥</div>
                   <h3>Population Served</h3>
                   <div className="healthcare-value">{(healthcareResults.populationWithAccess15min / 1000).toFixed(0)}K</div>
                   <p className="healthcare-label">Within {driveTime} minutes</p>
                 </div>
 
                 <div className="healthcare-card" style={{ borderColor: healthcareResults.statusColor }}>
-                  <div className="healthcare-icon">📊</div>
                   <h3>Quality Score</h3>
                   <div className="healthcare-value">{healthcareResults.qualityScore}/100</div>
                   <p className="healthcare-label">Overall Quality</p>
@@ -215,7 +146,7 @@ function Healthcare() {
               {/* Satellite Map */}
               {showMap && selectedCity && (
                 <div className="map-section">
-                  <h3>🗺️ Healthcare Facility Distribution Map</h3>
+                  <h3>Healthcare Facility Distribution Map</h3>
                   <SatelliteMap 
                     city={selectedCity.name}
                     coordinates={selectedCity.coordinates}
@@ -230,7 +161,7 @@ function Healthcare() {
 
               {/* Drive-Time Access Analysis */}
               <div className="drive-time-section">
-                <h3>⏱️ Drive-Time Access Analysis</h3>
+                <h3>Drive-Time Access Analysis</h3>
                 <div className="drive-time-grid">
                   <div className="drive-time-card">
                     <div className="time-badge">5 min</div>
@@ -255,10 +186,9 @@ function Healthcare() {
 
               {/* Facility Types */}
               <div className="facility-types-section">
-                <h3>🏥 Facility Breakdown</h3>
+                <h3>Facility Breakdown</h3>
                 <div className="facility-grid">
                   <div className="facility-card">
-                    <div className="facility-icon">🏥</div>
                     <h4>Hospitals</h4>
                     <p className="facility-count">{healthcareResults.hospitals}</p>
                   </div>
@@ -282,10 +212,10 @@ function Healthcare() {
 
               {/* Resource Metrics */}
               <div className="resource-metrics-section">
-                <h3>📊 Resource Metrics vs WHO Standards</h3>
+                <h3>Resource Metrics vs WHO Standards</h3>
                 <div className="resource-grid">
                   <div className="resource-card">
-                    <h4>🛏️ Hospital Beds</h4>
+                    <h4>Hospital Beds</h4>
                     <div className="resource-comparison">
                       <div className="current-value">
                         <span className="value-label">Current</span>
@@ -325,7 +255,7 @@ function Healthcare() {
                   </div>
 
                   <div className="resource-card">
-                    <h4>🏥 Facilities</h4>
+                    <h4>Facilities</h4>
                     <div className="resource-comparison">
                       <div className="current-value">
                         <span className="value-label">Current</span>
@@ -412,7 +342,7 @@ function Healthcare() {
 
               {/* Recommendations */}
               <div className="recommendations-section">
-                <h3>💡 AI-Powered Recommendations</h3>
+                <h3>Recommendations</h3>
                 <div className="recommendations-list">
                   {healthcareResults.recommendations.map((rec, index) => (
                     <div key={index} className="recommendation-item">
@@ -425,7 +355,7 @@ function Healthcare() {
 
               {/* Data Sources */}
               <div className="data-source-section">
-                <h3>📡 Data Sources</h3>
+                <h3>Data Sources</h3>
                 <p className="data-source-text">{healthcareResults.dataSource}</p>
               </div>
             </>
@@ -433,30 +363,6 @@ function Healthcare() {
         </div>
       </section>
 
-      {/* Methodology Section */}
-      <section className="methodology-section">
-        <div className="container">
-          <h2>🔬 Methodology</h2>
-          <div className="methodology-grid">
-            <div className="method-card">
-              <h4>1️⃣ Facility Mapping</h4>
-              <p>healthsites.io database provides comprehensive healthcare facility locations globally</p>
-            </div>
-            <div className="method-card">
-              <h4>2️⃣ Drive-Time Analysis</h4>
-              <p>Openrouteservice API calculates realistic drive-time isolines using road networks</p>
-            </div>
-            <div className="method-card">
-              <h4>3️⃣ Population Overlay</h4>
-              <p>GHS-POP data overlays population distribution to calculate coverage percentages</p>
-            </div>
-            <div className="method-card">
-              <h4>4️⃣ Gap Analysis</h4>
-              <p>WHO standards comparison identifies resource gaps and optimal facility locations</p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

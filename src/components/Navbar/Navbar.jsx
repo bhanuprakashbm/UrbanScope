@@ -99,16 +99,16 @@ function Navbar() {
             <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/">Home</NavLink>
           </li>
           <li className="navbar-list-item" onClick={()=>toggleMenu()}>
-            <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/heat-risk">🌡️ Heat Risk</NavLink>
+            <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/heat-risk">Heat Risk</NavLink>
           </li>
           <li className="navbar-list-item" onClick={()=>toggleMenu()}>
-            <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/green-space">🌳 Green Space</NavLink>
+            <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/green-space">Green Space</NavLink>
           </li>
           <li className="navbar-list-item" onClick={()=>toggleMenu()}>
-            <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/healthcare">🏥 Healthcare</NavLink>
+            <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/healthcare">Healthcare</NavLink>
           </li>
           <li className="navbar-list-item" onClick={()=>toggleMenu()}>
-            <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/urban-vr">🥽 Urban VR</NavLink>
+            <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/urban-vr">Urban VR</NavLink>
           </li>
           <li className="navbar-list-item" onClick={toggleMenu}>
             <NavLink className={({ isActive }) => ("rem-default " + (isActive ? ' active' : ''))} to="/about">About</NavLink>
