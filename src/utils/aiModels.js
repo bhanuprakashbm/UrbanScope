@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// Use environment variable for API URL, fallback to localhost for development
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// Use environment variable for API URL, fallback to network IP for development
+const API_BASE = import.meta.env.VITE_API_URL || 'http://10.239.56.51:5000/api';
 
 /**
  * Check if backend is running

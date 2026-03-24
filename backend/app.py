@@ -17,6 +17,23 @@ from models.prediction import predict_future_trends
 app = Flask(__name__)
 CORS(app)  # Enable CORS for React frontend
 
+# Root route
+@app.route('/')
+def root():
+    return jsonify({
+        'message': 'UrbanScope AI Backend API',
+        'version': '1.0.0',
+        'status': 'running',
+        'endpoints': {
+            'health': '/api/health',
+            'heatRisk': '/api/heat-risk',
+            'greenSpace': '/api/green-space',
+            'healthcare': '/api/healthcare-access',
+            'integrated': '/api/integrated-analysis',
+            'prediction': '/api/predict-future'
+        }
+    })
+
 # Health check endpoint
 @app.route('/api/health', methods=['GET'])
 def health_check():
@@ -216,7 +233,8 @@ if __name__ == '__main__':
     print("     - Intervention Impact Analysis")
     print("\n" + "=" * 60)
     print("🌐 Server Status: RUNNING")
-    print("📡 Endpoint: http://localhost:5000")
+    print("📡 Local Endpoint: http://localhost:5000")
+    print("🌍 Network Endpoint: http://0.0.0.0:5000")
     print("🔗 Frontend: http://localhost:5173")
     print("=" * 60)
     print("\n✨ Ready to analyze urban health data!\n")
